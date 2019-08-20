@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Hello World - null
+          RequestContext错误.md - null
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/2019/08/20/hello-world/">
+    <link rel="canonical" href="http://yoursite.com/2019/08/20/RequestContext错误-md/">
 
     <!-- Bootstrap Core CSS -->
 
@@ -105,7 +105,7 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>Hello World</h1>
+                        <h1>RequestContext错误.md</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by John Doe on
@@ -209,19 +209,21 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+                <ul>
+<li>在Django==2.2.4的views中这样写会报错:</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>   <span class="comment"># 127.0.0.1:8000/index</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># - 加载模板文件,模板对象</span></span><br><span class="line">    temp = loader.get_template(<span class="string">'booktest/index.html'</span>)</span><br><span class="line">    <span class="comment"># - 定义模板上下文:给模板文件传递数据</span></span><br><span class="line">    context = RequestContext(request, &#123;&#125;)</span><br><span class="line">    <span class="comment"># - 模板渲染</span></span><br><span class="line">    res_html = temp.render(context)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回给浏览器</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(res_html)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>错误类型:TypeError: context must be a dict rather than RequestContext.</li>
+</ul>
+<ul>
+<li><p>解决方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(request)</span>:</span>   <span class="comment"># 127.0.0.1:8000/index</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># - 加载模板文件,模板对象</span></span><br><span class="line">    temp = loader.get_template(<span class="string">'booktest/index.html'</span>)</span><br><span class="line">    <span class="comment"># - 定义模板上下文:给模板文件传递数据</span></span><br><span class="line">    context =  &#123;&#125;</span><br><span class="line">    <span class="comment"># - 模板渲染</span></span><br><span class="line">    res_html = temp.render(context)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回给浏览器</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(res_html)</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+</li>
+</ul>
 
                 
 
@@ -440,7 +442,7 @@
 <script>
     // only load tagcloud.js in tag.html
     if($('#tag_cloud').length !== 0){
-        async("http://yoursite.com/2019/08/20/hello-world/index.html/js/jquery.tagcloud.js",function(){
+        async("http://yoursite.com/2019/08/20/RequestContext错误-md/index.html/js/jquery.tagcloud.js",function(){
             $.fn.tagcloud.defaults = {
                 //size: {start: 1, end: 1, unit: 'em'},
                 color: {start: '#bbbbee', end: '#0085a1'},
