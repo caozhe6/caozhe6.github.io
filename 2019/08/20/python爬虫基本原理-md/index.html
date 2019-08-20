@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          python爬虫基本原理.md - null
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite.com/2019/08/20/python爬虫基本原理-md/">
+
+    <!-- Bootstrap Core CSS -->
+
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+
+    
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+
+    <link rel="stylesheet" href="/css/donate.css">
+	<link rel="stylesheet" href="/css/w3.css">
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+    }
+   .post-heading{
+    padding:20px;
+    }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+
+</style>
+
+<header id="headerid" class="w3-indigo intro-header" style="position:relative;">
+    <!-- Signature -->
+	
+        <div class="container">
+            <div class=" row" >
+			
+			<canvas id="particles-js-canvas" style="position:absolute;z-index:1;top:0px;left:0px;" width="100%" height="50%"></canvas>
+			
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" style="z-index:2;">
+                
+                    <div class="post-heading" style="padding:40px">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#爬虫" title="爬虫">爬虫</a>
+                            
+                        </div>
+                        <h1>python爬虫基本原理.md</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 曹哲 on
+                            2019-08-20
+                        </span>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+  
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">曹哲的博客</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a  href="/">主页</a>
+                    </li>
+		    
+                    
+
+                        
+                        <li>
+           
+                            <a  href="#">文章</a>
+                           
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3 id="爬虫的概念"><a href="#爬虫的概念" class="headerlink" title="爬虫的概念"></a>爬虫的概念</h3><ul>
+<li>爬虫是模拟浏览器发送请求，获取响应</li>
+</ul>
+<h3 id="爬虫的分类"><a href="#爬虫的分类" class="headerlink" title="爬虫的分类"></a>爬虫的分类</h3><ul>
+<li>通用爬虫</li>
+<li>聚焦爬虫</li>
+</ul>
+<h3 id="爬虫的流程"><a href="#爬虫的流程" class="headerlink" title="爬虫的流程"></a>爬虫的流程</h3><ul>
+<li>url—&gt;发送请求，获取响应—&gt;提取数据—&gt;保存</li>
+<li>发送请求，获取响应—&gt;提取url</li>
+</ul>
+<h3 id="通用搜索引擎的局限性"><a href="#通用搜索引擎的局限性" class="headerlink" title="通用搜索引擎的局限性"></a>通用搜索引擎的局限性</h3><ul>
+<li>通用搜索引擎所返回的网页里90%的内容无用。</li>
+<li>图片、音频、视频多媒体的内容通用搜索引擎无能为力</li>
+<li>不同用户搜索的目的不全相同，但是返回内容相同</li>
+</ul>
+<h3 id="爬虫要根据当前url地址对应的响应为准-，当前url地址的elements的内容和url的响应不一样"><a href="#爬虫要根据当前url地址对应的响应为准-，当前url地址的elements的内容和url的响应不一样" class="headerlink" title="爬虫要根据当前url地址对应的响应为准 ，当前url地址的elements的内容和url的响应不一样"></a>爬虫要根据当前url地址对应的响应为准 ，当前url地址的elements的内容和url的响应不一样</h3><h3 id="ROBOTS协议"><a href="#ROBOTS协议" class="headerlink" title="ROBOTS协议"></a>ROBOTS协议</h3><ul>
+<li>Robots协议：网站通过Robots协议告诉搜索引擎哪些页面可以抓取，哪些页面不能抓取。</li>
+<li>例如：<a href="https://www.taobao.com/robots.txt" target="_blank" rel="noopener">https://www.taobao.com/robots.txt</a></li>
+</ul>
+<h3 id="页面上的数据在哪里"><a href="#页面上的数据在哪里" class="headerlink" title="页面上的数据在哪里"></a>页面上的数据在哪里</h3><ul>
+<li>当前url地址对应的响应中</li>
+<li>其他的url地址对应的响应中 <ul>
+<li>比如ajax请求中</li>
+</ul>
+</li>
+<li>js生成的 <ul>
+<li>部分数据在响应中</li>
+<li>全部通过js生成</li>
+</ul>
+</li>
+</ul>
+<h3 id="requests中解决编解码的方法"><a href="#requests中解决编解码的方法" class="headerlink" title="requests中解决编解码的方法"></a>requests中解决编解码的方法</h3><ul>
+<li>response.content.decode()</li>
+<li>response.content.decode(“gbk”)</li>
+<li>response.text</li>
+</ul>
+<h3 id="为什么使用requests不使用urllib"><a href="#为什么使用requests不使用urllib" class="headerlink" title="为什么使用requests不使用urllib"></a>为什么使用requests不使用urllib</h3><ul>
+<li>requests的底层实现就是urllib</li>
+<li>requests在python2 和python3中通用，方法完全一样</li>
+<li>requests简单易用</li>
+<li>Requests能够自动帮助我们解压(gzip压缩的等)网页内容</li>
+</ul>
+<h3 id="response-text-和response-content的区别"><a href="#response-text-和response-content的区别" class="headerlink" title="response.text 和response.content的区别"></a>response.text 和response.content的区别</h3><ul>
+<li>response.text<ul>
+<li>类型：str</li>
+<li>解码类型： 根据HTTP 头部对响应的编码作出有根据的推测，推测的文本编码</li>
+<li>如何修改编码方式：response.encoding=”gbk”</li>
+</ul>
+</li>
+<li>response.content<ul>
+<li>类型：bytes</li>
+<li>解码类型： 没有指定</li>
+<li>如何修改编码方式：response.content.deocde(“utf8”)</li>
+</ul>
+</li>
+</ul>
+<h3 id="Unicode-UTF8-ASCII的补充"><a href="#Unicode-UTF8-ASCII的补充" class="headerlink" title="Unicode UTF8 ASCII的补充"></a>Unicode UTF8 ASCII的补充</h3><ul>
+<li>字符(Character)是各种文字和符号的总称，包括各国家文字、标点符号、图形符号、数字等</li>
+<li>字符集(Character set)是多个字符的集合</li>
+<li>字符集包括：ASCII字符集、GB2312字符集、GB18030字符集、Unicode字符集等</li>
+<li>ASCII编码是1个字节，而Unicode编码通常是2个字节</li>
+<li>UTF-8是Unicode的实现方式之一，UTF-8是它是一种变长的编码方式，可以是1，2，3个字节</li>
+</ul>
+<h3 id="Requests-如何获取响应的URL地址和请求的URL地址，如何发送post请求"><a href="#Requests-如何获取响应的URL地址和请求的URL地址，如何发送post请求" class="headerlink" title="Requests 如何获取响应的URL地址和请求的URL地址，如何发送post请求"></a>Requests 如何获取响应的URL地址和请求的URL地址，如何发送post请求</h3><ul>
+<li>response.url</li>
+<li>response.request.url</li>
+<li>request.post(url,data= {})</li>
+</ul>
+<h3 id="如何发送带headers的请求和params的请求"><a href="#如何发送带headers的请求和params的请求" class="headerlink" title="如何发送带headers的请求和params的请求"></a>如何发送带headers的请求和params的请求</h3><ul>
+<li>requests.get(url,hearders={})</li>
+<li>requests.get(url,params={})</li>
+</ul>
+<h3 id="如何使用代理"><a href="#如何使用代理" class="headerlink" title="如何使用代理"></a>如何使用代理</h3><ul>
+<li>准备一堆IP组成IP池，随机选择一个IP使用</li>
+<li>如何随机选择IP<ul>
+<li>{“ip”:ip,”times”:times}</li>
+<li>[{},{},{},{}]对这个IP列表按使用次数进行排序</li>
+<li>使用次数最少的10个IP进行随机选择</li>
+</ul>
+</li>
+<li>检查IP可用性<ul>
+<li>可以使用requests中添加超时参数，判断IP地址质量</li>
+<li>在线代理IP检测网站</li>
+</ul>
+</li>
+</ul>
+<h3 id="正向代理和反向代理的区别"><a href="#正向代理和反向代理的区别" class="headerlink" title="正向代理和反向代理的区别"></a>正向代理和反向代理的区别</h3><ul>
+<li>requests.get(url,proxies={协议:协议+IP+端口})</li>
+<li>正向代理：客户端知道服务器的地址</li>
+<li>反向代理：客户端不知道最终服务器的地址</li>
+</ul>
+<h3 id="模拟登录的三种方式"><a href="#模拟登录的三种方式" class="headerlink" title="模拟登录的三种方式"></a>模拟登录的三种方式</h3><ul>
+<li>session<ul>
+<li>实例化session（session具有的方法和request一样）</li>
+<li>session发送请求post请求，对方服务器设置的cookie会保存在session</li>
+<li>session请求登录后能够访问的页面</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session = requests.session()</span><br><span class="line">session.post(url,data,headers)</span><br><span class="line">response = session.get(url,headers)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>cookie放在headers中<ul>
+<li>headers= {“cookie”:”cookie字符串”}</li>
+<li>适用于<ul>
+<li>cookie过期时间很长的网站</li>
+<li>在cookie过期之前能够请求到所有数据，比较麻烦</li>
+<li>配合其他程序使用，其他程序专门保存cookie，，本程序专门请求页面</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cookie转化为字典放在请求方法中<ul>
+<li>requests.get(url,cookies={“name的值”:”values的值”})</li>
+</ul>
+</li>
+</ul>
+<h3 id="requests解决字符串编码的方法"><a href="#requests解决字符串编码的方法" class="headerlink" title="requests解决字符串编码的方法"></a>requests解决字符串编码的方法</h3><ul>
+<li>response.text</li>
+<li>response.content.decode()</li>
+<li>response.content.decode(“gbk”)</li>
+</ul>
+<h3 id="寻找登录的post地址"><a href="#寻找登录的post地址" class="headerlink" title="寻找登录的post地址"></a>寻找登录的post地址</h3><ul>
+<li>在form表单中寻找action对应的URL地址<ul>
+<li>post的数据是input标签中name的值作为键，真正的用户名密码作为值的字典，post的URL地址就是action对应的URL地址</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>抓包，寻找登录的URL地址<ul>
+<li>勾选persevere log按钮,防止页面跳转找不到url</li>
+<li>寻找post数据，确定参数<ul>
+<li>参数不会变，直接用，比如密码不是动态加密的</li>
+<li>参数会变<ul>
+<li>参数在当前的响应中</li>
+<li>通过js生成的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="定位想要的js文件"><a href="#定位想要的js文件" class="headerlink" title="定位想要的js文件"></a>定位想要的js文件</h3><ul>
+<li>选择会触发js事件的按钮，点击event listener，找到js的位置</li>
+<li>通过Chrome中的search all file来搜索URL中的关键字</li>
+<li>添加断点查找js的操作，通过python来进行同样的操作</li>
+</ul>
+<h3 id="数据分类"><a href="#数据分类" class="headerlink" title="数据分类"></a>数据分类</h3><ul>
+<li>非结构化的数据：html等<ul>
+<li>处理方法：正则表达式，xpath</li>
+</ul>
+</li>
+<li>结构化数据：json，xml等<ul>
+<li>转化为 python 数据类型</li>
+</ul>
+</li>
+</ul>
+<h4 id="数据提取自json"><a href="#数据提取自json" class="headerlink" title="数据提取自json"></a>数据提取自json</h4><ul>
+<li>注意点<ul>
+<li>json中的字符串都使用双引号阔起来的</li>
+<li>不是双引号的需要处理<ul>
+<li>eval：能实现简单字符串和python 类型的转化</li>
+<li>replace：把单引号替换为双引号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 针对json字符串</span></span><br><span class="line">json.loads(json字符串)</span><br><span class="line">json.dumps(python字典/列表, ensure_acsii = <span class="literal">False</span>, indent = <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 针对包含json的类文件对象</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"douban.json"</span>,<span class="string">"r"</span>,encoding = <span class="string">"utf-8"</span>) <span class="keyword">as</span> f:</span><br><span class="line">  ret = json.load(f)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"douban.json"</span>,<span class="string">"w"</span>,encoding = <span class="string">"utf-8"</span>) <span class="keyword">as</span> f:</span><br><span class="line">  json.dump(python字典/列表，f, ensure_acsii = <span class="literal">False</span>, indent = <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><ul>
+<li>常用的方法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pattern=re.compile(<span class="string">"正则"</span>，re.S) <span class="comment"># 编译</span></span><br><span class="line"></span><br><span class="line">pattern.match(<span class="string">"正则"</span>，字符串) <span class="comment"># 从头找一个</span></span><br><span class="line"></span><br><span class="line">pattern.search(<span class="string">"正则"</span>，字符串) <span class="comment"># 找一个</span></span><br><span class="line"></span><br><span class="line">pattern.findall(<span class="string">"正则"</span>，字符串) <span class="comment"># 查找所有</span></span><br><span class="line"></span><br><span class="line">pattern.sub(<span class="string">"正则"</span>，替换内容，字符串) <span class="comment"># 替换</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/Users/caozhe/Desktop/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.png" alt="正则"></p>
+<ul>
+<li>常温问题：<ul>
+<li>re.compile怎么使用？<ul>
+<li>在括号里写正则表达式，必要时可以加上re.S</li>
+</ul>
+</li>
+<li>如何非贪婪的去匹配内容？<ul>
+<li>在后面加上问好</li>
+</ul>
+</li>
+<li>re.findall(r”a.<em>bc”,”a\nbc”,re.DOTALL)和re.findall(r”a(.</em>)bc”,”a\nbc”,re.DOTALL)有什么区别？<ul>
+<li>前者输出的是a\nbc,而后者指输出\n</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="xpath学习-重点"><a href="#xpath学习-重点" class="headerlink" title="xpath学习(重点)"></a>xpath学习(重点)</h3><ul>
+<li><p>获取文本</p>
+<ul>
+<li><code>a/text()</code>  获取a下的文本</li>
+<li><code>a//text()</code>  获取a下的所有文本</li>
+<li><code>//a[text() = &quot;下一页&quot;]</code></li>
+</ul>
+</li>
+<li><p>@符号的使用</p>
+<ul>
+<li>获取属性<ul>
+<li><code>a/@href</code></li>
+</ul>
+</li>
+<li>定位属性、元素<ul>
+<li><code>//ul[@id = &quot;detail-list&quot;]</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>//符号的使用</p>
+<ul>
+<li>在xpath开始的时候表示从当前的 html中的任意位置开始选择</li>
+<li><code>li//a</code>表示li标签下的任何一个a标签</li>
+</ul>
+</li>
+<li><p>xpath节点选择语法</p>
+<ul>
+<li>选取节语法</li>
+</ul>
+</li>
+<li><p>xpath的包含</p>
+<ul>
+<li><code>//div[contains(@class,&#39;i&#39;)]</code></li>
+</ul>
+</li>
+</ul>
+<p>  ![xpath](/Users/caozhe/Desktop/屏幕快照 2019-07-22 17.09.34.png)</p>
+<ul>
+<li><p>![节点选择语法](/Users/caozhe/Desktop/屏幕快照 2019-07-22 17.17.18.png)</p>
+</li>
+<li><p>选择未知节点</p>
+<p>![通配符](/Users/caozhe/Desktop/屏幕快照 2019-07-22 17.24.55.png)</p>
+</li>
+<li><p>选取多个节点</p>
+<p>![多个节点](/Users/caozhe/Desktop/屏幕快照 2019-07-22 17.32.36.png)</p>
+<p>​        <strong>使用xpath helper和Chrome中的copy xpath都是从element中提取的数据，但爬虫获取的是对应URL地址中的响应，往往和 element不一样</strong></p>
+</li>
+</ul>
+<h3 id="lxml使用注意点"><a href="#lxml使用注意点" class="headerlink" title="lxml使用注意点"></a>lxml使用注意点</h3><ul>
+<li>lxml能够修正代码，但是有可能会出现错误<ul>
+<li>使用etree.tostring观察修改后的html字符串，根据修改后的字符串写xpath</li>
+</ul>
+</li>
+<li>提取页面数据的流程<ul>
+<li>先分组，先取到一个包含分组标签的列表</li>
+<li>然后遍历，取其中的每一组进行数字的提取，不会造成数据对应错乱</li>
+</ul>
+</li>
+<li>lxml能够接受的数据类型有：bytes，str</li>
+</ul>
+<h3 id="queue模块如何使用"><a href="#queue模块如何使用" class="headerlink" title="queue模块如何使用"></a>queue模块如何使用</h3><ul>
+<li>from queue import Queue</li>
+<li>实例化</li>
+<li>queue.put() # get计数减一</li>
+<li>queue.get()</li>
+<li>queue.task_doen() # 计数减一</li>
+<li>queue.join() # 让主线程阻塞</li>
+</ul>
+<h3 id="爬虫思路总结"><a href="#爬虫思路总结" class="headerlink" title="爬虫思路总结"></a>爬虫思路总结</h3><ul>
+<li>准备URL<ul>
+<li>准备start_url<ul>
+<li>页码总数不确定</li>
+<li>URL地址规律不明显</li>
+<li>通过代码提取下一页URL地址<ul>
+<li>xpath</li>
+<li>寻找URL地址，部分参数在当前的相应中（比如，当前页码数和总的页码数，在当前的响应中）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>准备url_list<ul>
+<li>页码总数确定 </li>
+<li>URL地址规律明显</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>发送请求，获取响应<ul>
+<li>添加随机的user-agent，反反爬虫</li>
+<li>添加随机的代理IP，反反爬虫</li>
+<li>在对方判断出我们是爬虫之后，应该添加更多的headers字段和cookie</li>
+<li>cookie的处理我们可以用session处理</li>
+<li>准备一堆能用的cookie组成cookie池<ul>
+<li>如果不登录<ul>
+<li>准备刚开始能过成功请求对方网站的cookie，即接受对方网站设置在request中的cookie</li>
+<li>下次请求使用之前放在列表中的 cookie 来请求</li>
+</ul>
+</li>
+<li>如果登录<ul>
+<li>使用多个账号</li>
+<li>使用程序获取每个账号的cookie</li>
+<li>之后请求登录之后才能访问的网站，随机的选择cookie</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>提取数据<ul>
+<li>确定数据位置<ul>
+<li>如果数据在当前URL响应中<ul>
+<li>提取列表页的数据<ul>
+<li>直接请求列表页URL， 不用进入详情页</li>
+</ul>
+</li>
+<li>提取详情页的数据<ul>
+<li>确定URL地址</li>
+<li>发送请求</li>
+<li>提取数据</li>
+<li>返回数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果数据不在当前URL响应中<ul>
+<li>在其他响应中，寻找数据的位置<ul>
+<li>1.从network中从上往下找</li>
+<li>2.从chrome中的过滤条件，选择除了js，css，img以外的其他按钮</li>
+<li>3.使用search all file搜索关键字，尽量搜索数字和英文</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>提取数据<ul>
+<li>xpath ——从html页面中提取整块的数据<ul>
+<li>1.先分组</li>
+<li>每一组提取数据</li>
+<li></li>
+</ul>
+</li>
+<li>json ——提取URL地址</li>
+<li>re——提取html中的json字符串，price，max_time</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>保存数据<ul>
+<li>保存在本地<ul>
+<li>text</li>
+<li>json</li>
+<li>csv</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h3><ul>
+<li><p>URL地址不变，验证码不变</p>
+<ul>
+<li>请求验证码地址，获取响应，识别验证码</li>
+</ul>
+</li>
+<li><p>URL地址不变，验证码改变</p>
+<ul>
+<li>原理：对方服务器返回验证码的时候，会和每个用户的信息和验证码进行对应，之后在用户发送 post 请求的时候，会对比用户在post 请求中发送的验证码和服务器中用户的验证码是否相同</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>1.实例化 session</li>
+<li>2.使用 session 请求登录页面获取验证码地址</li>
+<li>3.使用 session请求验证码并识别</li>
+<li>4.使用 session 发送 post 请求</li>
+</ul>
+<ul>
+<li>使用 selenium登录，遇到验证码<ul>
+<li>URL地址不变，验证码不变，同上</li>
+<li>URL地址不变，验证码改变<ul>
+<li>1.selenium 请求登录页面，同时拿到验证码地址</li>
+<li>2.获取登录页面中 driver 中的 cookie，交给 requests 模块发送验证码的请求并识别</li>
+<li>3.输入验证码，点击登录</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h3><h4 id="selenium的使用"><a href="#selenium的使用" class="headerlink" title="selenium的使用"></a>selenium的使用</h4><ul>
+<li>from selenium import webdriver</li>
+<li>driver = webdriver.Chrome()</li>
+<li>driver.get(url)</li>
+<li>driver.quit()</li>
+</ul>
+<h4 id="如何定位，获取属性和文本"><a href="#如何定位，获取属性和文本" class="headerlink" title="如何定位，获取属性和文本"></a>如何定位，获取属性和文本</h4><ul>
+<li>driver.find_element     返回一个对象，没有会报错</li>
+<li>driver.find_elements     返回一个列表</li>
+<li>driver.find_element_by_id()</li>
+<li>driver.find_element_by_class_name()</li>
+<li>driver.find_element_by_xpath()</li>
+<li>driver.find_element_by_link_text()</li>
+<li>driver.find_element_by_id().get_attribute()</li>
+<li>driver.find_element_by_id().text</li>
+</ul>
+<h4 id="selenium如何切换到iframe中"><a href="#selenium如何切换到iframe中" class="headerlink" title="selenium如何切换到iframe中"></a>selenium如何切换到iframe中</h4><ul>
+<li>driver.switch_to.frame(frame的id,name,driver.find_element_by_xpath(“//a[1]”))</li>
+</ul>
+<h4 id="selenium使用注意点"><a href="#selenium使用注意点" class="headerlink" title="selenium使用注意点"></a>selenium使用注意点</h4><ul>
+<li>获取文本和获取属性<ul>
+<li>先定位到元素，然后调用<code>.text</code>或<code>.get_attribute</code>方法来获取</li>
+</ul>
+</li>
+<li>selenium获取到的页面数据是浏览器中elements 的内容</li>
+<li>find_element和find_elements的区别<ul>
+<li>find_element是返回一个element，没有内容就会报错</li>
+<li>find_elements是返回一个列表，没有内容就是空列表</li>
+<li>在判断是否有下一页时，使用find_elements来根据返回结果的长度来判断</li>
+</ul>
+</li>
+<li>如果页面中有iframe，frame则需要先调用driver.switch_to.frame的方法来切换到frame 中才能定位到元素</li>
+<li>selenium请求第一页的数据是会等待页面加载完成后再获取，但是获取第二页的内容的时候不会等待，所以获取下一页的数据是需要先sleep几秒再获取数据</li>
+</ul>
+<h3 id="爬虫数据去重，实现增量式爬虫"><a href="#爬虫数据去重，实现增量式爬虫" class="headerlink" title="爬虫数据去重，实现增量式爬虫"></a>爬虫数据去重，实现增量式爬虫</h3><ul>
+<li>使用数据库建立关键字段的（一个或多个）索引进行去重</li>
+<li>根据url地址进行去重<ul>
+<li>使用场景<ul>
+<li>url地址对应数据不会变的情况，url地址能够唯一判别一条数据的情况</li>
+</ul>
+</li>
+<li>思路<ul>
+<li>url存在redis中</li>
+<li>拿到url地址，判断url是否存在redis的集合中</li>
+<li>存在：说明已经请求过</li>
+<li>不存在：说明还没有请求过，请求地址并把url存入redis中</li>
+</ul>
+</li>
+<li>布隆过滤器<ul>
+<li>使用加密算法加密url地址，得到多个值</li>
+<li>往对应值的位置把结果设置为1</li>
+<li>新来一个url地址，一样通过算法生成多个值</li>
+<li>如果对应位置全为1，则说明已经抓过了</li>
+<li>否则就没有抓过，就把对应位置设置为1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>根据数据本身进行去重<ul>
+<li>选择特定的字段（能够唯一标识的字段），使用加密算法（md5，sha1）将字段进行加密，生成字符串，存入redis集合中</li>
+<li>后续新来的数据，用同样的方式进行加密，如果得到的字符串在redis集合中存在，则说明数据存在，否则就不存在，直接插入数据</li>
+</ul>
+</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/08/20/RequestContext错误/" data-toggle="tooltip" data-placement="top" title="RequestContext错误.md">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <br>
+
+                <!--打赏-->
+                
+                <!--打赏-->
+
+                <br>
+                <!--分享-->
+                
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
+                    <!--  css & js -->
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+                
+                <!--分享-->
+                <br>                       
+                
+                <!-- require APlayer -->
+                
+
+                <!-- disqus comment start -->
+                
+                <!-- disqus comment end -->
+
+                
+				
+            </div>
+
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">标签云</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#爬虫" title="爬虫">爬虫</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://www.sumoon.com" target="_blank">ACE theme</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/kinggozhang">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 曹哲 2019 
+                    <br>
+                    Powered by <a href="http://www.hexo.io">Hexo</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Theme by <a href="https://github.com/kinggozhang/hexo-theme-ace">ACE</a> 
+					
+					
+					<i class="fa fa-eye" id="leancounter"></i>
+					
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+   <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+
+
+
+<!-- Bootstrap Core JavaScript -->
+
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+	<script src="/js/particles.js"></script>
+	<script src="/js/particles_config.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite.com/2019/08/20/python爬虫基本原理-md/index.html/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
