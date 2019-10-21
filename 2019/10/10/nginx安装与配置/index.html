@@ -54,19 +54,19 @@
   };
 </script>
 
-  <meta name="description" content="mongodb的基本使用 Mongodb插入数据  db.collection.insert({})     插入数据  _id存在就会报错 db.collection.save({})    插入数据 _id存在会更新   Mongodb查询数据  db.集合名称.find({}) db.集合名称.findOne({}) pretty()方法可以格式化输出">
-<meta name="keywords" content="数据库">
+  <meta name="description" content="Nginx 是一个高性能的http和反向代理服务器,具有占用内存少,并发能力强的优秀的性能 Nginx在开发中主要用作反向代理,负载均衡,动静分离">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongodb基本使用.md">
-<meta property="og:url" content="http://yoursite.com/2019/08/19/mongodb基本使用-md/index.html">
+<meta property="og:title" content="nginx安装与配置">
+<meta property="og:url" content="http://yoursite.com/2019/10/10/nginx安装与配置/index.html">
 <meta property="og:site_name" content="Caoz&#39;s Blog">
-<meta property="og:description" content="mongodb的基本使用 Mongodb插入数据  db.collection.insert({})     插入数据  _id存在就会报错 db.collection.save({})    插入数据 _id存在会更新   Mongodb查询数据  db.集合名称.find({}) db.集合名称.findOne({}) pretty()方法可以格式化输出">
+<meta property="og:description" content="Nginx 是一个高性能的http和反向代理服务器,具有占用内存少,并发能力强的优秀的性能 Nginx在开发中主要用作反向代理,负载均衡,动静分离">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-10T08:29:18.623Z">
+<meta property="og:updated_time" content="2019-10-21T07:04:11.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongodb基本使用.md">
-<meta name="twitter:description" content="mongodb的基本使用 Mongodb插入数据  db.collection.insert({})     插入数据  _id存在就会报错 db.collection.save({})    插入数据 _id存在会更新   Mongodb查询数据  db.集合名称.find({}) db.集合名称.findOne({}) pretty()方法可以格式化输出">
-  <link rel="canonical" href="http://yoursite.com/2019/08/19/mongodb基本使用-md/">
+<meta name="twitter:title" content="nginx安装与配置">
+<meta name="twitter:description" content="Nginx 是一个高性能的http和反向代理服务器,具有占用内存少,并发能力强的优秀的性能 Nginx在开发中主要用作反向代理,负载均衡,动静分离">
+  <link rel="canonical" href="http://yoursite.com/2019/10/10/nginx安装与配置/">
 
 
 <script id="page-configurations">
@@ -80,7 +80,7 @@
   };
 </script>
 
-  <title>mongodb基本使用.md | Caoz's Blog</title>
+  <title>nginx安装与配置 | Caoz's Blog</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -206,7 +206,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/19/mongodb基本使用-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/nginx安装与配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="曹哲">
@@ -218,7 +218,7 @@
       <meta itemprop="name" content="Caoz's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">mongodb基本使用.md
+        <h1 class="post-title" itemprop="name headline">nginx安装与配置
 
           
         </h1>
@@ -234,7 +234,7 @@
                 
               
 
-              <time title="创建时间：2019-08-19 22:48:51" itemprop="dateCreated datePublished" datetime="2019-08-19T22:48:51+08:00">2019-08-19</time>
+              <time title="创建时间：2019-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">2019-10-10</time>
             </span>
           
             
@@ -245,22 +245,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 16:29:18" itemprop="dateModified" datetime="2019-10-10T16:29:18+08:00">2019-10-10</time>
+                <time title="修改时间：2019-10-21 15:04:11" itemprop="dateModified" datetime="2019-10-21T15:04:11+08:00">2019-10-21</time>
               </span>
             
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/基础总结/" itemprop="url" rel="index"><span itemprop="name">基础总结</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -274,250 +261,114 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="mongodb的基本使用"><a href="#mongodb的基本使用" class="headerlink" title="mongodb的基本使用"></a>mongodb的基本使用</h3><ul>
-<li><p>Mongodb插入数据</p>
-<ul>
-<li>db.collection.insert({})     插入数据  _id存在就会报错</li>
-<li>db.collection.save({})    插入数据 _id存在会更新</li>
-</ul>
-</li>
-<li><p>Mongodb查询数据</p>
-<ul>
-<li>db.集合名称.find({})</li>
-<li>db.集合名称.findOne({})</li>
-<li>pretty()方法可以格式化输出</li>
-</ul>
-</li>
+        <ul>
+<li>Nginx 是一个高性能的http和反向代理服务器,具有占用内存少,并发能力强的优秀的性能</li>
+<li>Nginx在开发中主要用作反向代理,负载均衡,动静分离</li>
 </ul><a id="more"></a>
+<h4 id="Nginx安装"><a href="#Nginx安装" class="headerlink" title="Nginx安装"></a>Nginx安装</h4><ul>
+<li><p>下载Nginx的安装包</p>
 <ul>
-<li><p>Mongodb更新操作</p>
+<li><code>wget http://nginx.org/download/nginx-1.6.2.tar.gz</code></li>
+</ul>
+</li>
+<li><p>安装pcre</p>
 <ul>
-<li>db.集合名.update(<query>,<update>,{multi:<boolean>})<ul>
-<li>参数query：查询条件</li>
-<li>参数update：更新操作符</li>
-<li>参数multi：可选，默认是false，表示只更新找到的第一条记录，改成true可以修改整份文档中找到的数据</li>
-</ul>
-</boolean></update></query></li>
-<li>db.stu.update({name:”caozhe”},{name:”chenjiale”})<ul>
-<li>把name为caozhe的数据替换为chengjiale</li>
+<li><code>wget https://netix.dl.sourceforge.net/project/pcre/pcre/8.40/pcre-8.40.tar.gz</code></li>
+<li>tar -xvf pcre…..</li>
+<li>进入目录执行./configure</li>
+<li>make &amp;&amp; make install</li>
+<li>查看版本号 pcre-config –version</li>
 </ul>
 </li>
-<li>db.stu.update({name:”caozhe”},{$set:{name:”chenjiale”}})<ul>
-<li>把 name 为caozhe的值替换为chengjiale</li>
-</ul>
-</li>
-<li>db.stu.update({name:”caozhe”},{$set:{name:”cjl”}},{multi:true})<ul>
-<li>把所有name 为caozhe的替换为cjl </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Mongodb删除操作</p>
+<li><p>安装Nginx的相关依赖</p>
 <ul>
-<li>db.集合名.remove(<query>,{justOne:<boolean>})<ul>
-<li>默认情况下删除全部，默认是false </li>
-</ul>
-</boolean></query></li>
+<li>安装openssl,zlib</li>
+<li>yum -y install make zlib zlib-devel openssl openssl-devel</li>
 </ul>
 </li>
-<li><p>Mongodb比较运算符</p>
+<li><p>安装Nginx</p>
 <ul>
-<li>等于：默认是等于判断，没有运算符</li>
-<li>小于：$lt(less than)</li>
-<li>小于等于：$lte(less than equal)</li>
-<li>大于：$gt(greater than)</li>
-<li>大于等于：$gte(greater than equal)</li>
-<li>不等于：$ne</li>
+<li>解压</li>
+<li>执行</li>
+<li>make &amp;&amp; make install</li>
 </ul>
 </li>
-<li><p>Mongodb范围运算符</p>
+<li><p>安装完成之后安装在了usr/local/nginx/sbin/下</p>
 <ul>
-<li>db.stu.find({age:{$in:[16,18,28]}}})</li>
-</ul>
-</li>
-<li><p>Mongodb 逻辑运算符</p>
+<li><p>启动后如果不能访问可能是防火墙限制了访问端口,解决方法如下</p>
 <ul>
-<li>and运算:db.stu.find({age:23,hometown:”长沙”})</li>
-<li>or运算：db.stu.find({$or:[{age:{$gte:18},{gender:0}}]})</li>
+<li><p>查看开放端口:firewall-cmd –list-all</p>
+</li>
+<li><p>设置开放端口:firewall-cmd –add-service=http –permanent</p>
+<p>sudo firewall-cmd –add-port=80/tcp –permanent</p>
+</li>
+<li><p>重启防火墙:firewall-cmd –reload</p>
+</li>
 </ul>
 </li>
-<li><p>Mongodb 支持正则表达式</p>
+</ul>
+</li>
+<li><p>常用命令</p>
 <ul>
-<li>db.stu.find({number:/^1541/})</li>
-<li>db.stu.find({number:{$regex:”19$”}})</li>
+<li>启动:./nginx</li>
+<li>查看版本号:./nginx -v</li>
+<li>关闭:./nginx -s stop</li>
+<li>重新加载:./nginx -s reload</li>
 </ul>
 </li>
-<li><p>自定义查询</p>
+</ul>
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><ul>
+<li><p>nginx 配置文件是/usr/local/nginx/conf/中的nginx.conf</p>
+</li>
+<li><p>nginx配置文件组成</p>
 <ul>
-<li>db.stu.find({$where:function(){return this.age&gt;18}})</li>
+<li>全局块:从配置文件开始到events之间的内容,设置一些影响nginx服务器整体运行的配置指令<ul>
+<li>worker_processes:值越大可以支持的并发处理量越高</li>
 </ul>
 </li>
-<li><p>limit和skip的使用</p>
+<li>events块:主要影响nginx服务器与用户的网络连接<ul>
+<li>worker_connections:支持的最大连接数</li>
+</ul>
+</li>
+<li>http块<ul>
+<li>http全局块</li>
+<li>server块</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>反向代理</p>
 <ul>
-<li>limit(n)   显示n条记录</li>
-<li>skip(n)    跳过n条记录</li>
+<li><p>反向代理接收客户端请求,转发请求,这样可以隐藏webapp的真实ip更加安全</p>
+</li>
+<li><p>在location中加入<code>proxy_pass    http://xxx.xxx.xxx.xxx:port;</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       <span class="number">9001</span>;</span><br><span class="line">        server_name  <span class="number">10.211</span><span class="number">.55</span><span class="number">.12</span>;</span><br><span class="line">        location ~ /vvv/ &#123;</span><br><span class="line">            proxy_pass    http://<span class="number">10.211</span><span class="number">.55</span><span class="number">.12</span>:<span class="number">8080</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        location ~ /edu/ &#123;</span><br><span class="line">            proxy_pass    http://<span class="number">10.211</span><span class="number">.55</span><span class="number">.12</span>:<span class="number">8081</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
-<li><p>投影</p>
+<li><p>负载均衡</p>
 <ul>
-<li>在查询到的结果中只想返回部分字段时<ul>
-<li>参数的值为1表示显示，0为不显示，_id默认显示，其他字段不显示就不写</li>
-</ul>
+<li><p>负载均衡可以在高并发的情况下实现多台服务器的分流,将请求分发到多个服务器上</p>
 </li>
-<li>db.stu.find({},{name:1,age:1,_id:0})</li>
-</ul>
-</li>
-<li><p>排序</p>
+<li><p>在http节点下加入upstream节点</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">upstream myserver&#123;</span><br><span class="line">		(ip_hash;)</span><br><span class="line">		server		xxx.xxx.xxx.xxx:port (weight=1);</span><br><span class="line">		server		yyy.yyy.yyy.yyy:port (weight=2);</span><br><span class="line">		(fair;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>方法sort()<ul>
-<li>参数为1就是升序，参数为-1就是降序</li>
+<li>weight分配访问的权重,不写则默认轮询</li>
+<li>ip_hash可以按每个访问ip的hash分配服务器;这样同一ip就会在同一服务器上访问,解决了session的问题,不写则默认轮询</li>
+<li>fair根据服务器响应时间来分配</li>
 </ul>
 </li>
-<li>db.stu.find().sort({age:1})</li>
+<li><p>在location中加入:<code>proxy_pass   http://myserver;</code></p>
+</li>
 </ul>
 </li>
-<li><p>count方法</p>
+<li><p>动静分离</p>
 <ul>
-<li>db.stu.find({条件}).count()</li>
-<li>db.stu.count({条件}) </li>
+<li>把静态,动态资源分开,Nginx来调用动态和静态资源,可以减少webAPP的访问压力,让webAPP只处理动态资源</li>
 </ul>
-</li>
-<li><p>去重</p>
-<ul>
-<li>db.stu.distinct(“class”,{条件})</li>
-</ul>
-</li>
-<li><p>数据的备份和恢复</p>
-<ul>
-<li>备份的语法：mongoudump -h dbhost -d dbname -o dbdirectory<ul>
-<li>-h 服务器地址，也可以指定端口号</li>
-<li>-d 需要选择的数据库名称</li>
-<li>-o 备份的数据存放的位置，此目录中存放着备份出来的数据</li>
-<li>mongodump -h 127.0.0.1:27017 -d demo -o ~/Desktop/demo_bak</li>
-</ul>
-</li>
-<li>恢复的语法：mongorestore -h dbhost -d dbname –dir dbdirectory<ul>
-<li>mongorestore -h 192.168.0.103 -d demo —dir ~/Desktop/demo_bak </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>聚合aggregate</p>
-<ul>
-<li><p>常用管道,各管道可以连用</p>
-<ul>
-<li><p>$group:将集合中的文档分组，可用于统计结果</p>
-<ul>
-<li><p>注意点：</p>
-</li>
-<li><p>$group对应的字典中有几个键，结果就有几个键</p>
-</li>
-<li><p>分组依据要放到_id后面</p>
-</li>
-<li><p>取不同字段的值需要使用$</p>
-</li>
-<li><p>取自店嵌套字典的时候要$_id.country</p>
-</li>
-<li><p>能够同时按多个键进行分组db.stu.aggregate({$group:{$_id:{country:”$country”,province:”$province”}}})</p>
-<ul>
-<li>结果是：{_id:{country:””,province:””}}</li>
-</ul>
-</li>
-<li><p>group by null——将集合中所有文档分为一组</p>
-<ul>
-<li>求学生总人数和平均年龄</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">db.stu.aggregate(</span><br><span class="line">	&#123;$group:&#123;</span><br><span class="line">		_id:null,</span><br><span class="line">		count:&#123;$sum:<span class="number">1</span>&#125;,</span><br><span class="line">		aveage:&#123;$avg:<span class="string">'$age'</span>&#125;</span><br><span class="line">	&#125;&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>$match:过滤数据，指输出符合条件的文档</p>
-<ul>
-<li>db.stu.aggregate({$match:{name:”caozhe “}})</li>
-</ul>
-</li>
-<li><p>$project:修改输入文档的结构，如重命名，增加删除字段，创建计算结果</p>
-<ul>
-<li>db.stu.aggregate({$project:{name:1,_id:0,age:1}})</li>
-</ul>
-</li>
-<li><p>$sort:将输入文档排序后输出</p>
-<ul>
-<li>db.stu.aggregate({$sort:{age:1}})</li>
-</ul>
-</li>
-<li><p>$limit:限制聚合管道返回的文档数</p>
-<ul>
-<li>db.stu.aggregate({$limit:2})</li>
-</ul>
-</li>
-<li><p>$skip:跳过指定数量的文档，并返回剩下的文档</p>
-<ul>
-<li>db.stu.aggregate({$skip:2})</li>
-</ul>
-</li>
-<li><p>$unwind:将数组类型的字段进行拆封</p>
-<ul>
-<li><p>db.shirt.aggregate($unwind:”$size”)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.inventory.aggregate(&#123;</span><br><span class="line">	$unwind:&#123;</span><br><span class="line">		path:<span class="string">'$字段名称'</span>,</span><br><span class="line">		preserveNullAndEmptyArrays:&lt;boolean&gt;  <span class="comment"># 防止数据丢失</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>表达式</p>
-<ul>
-<li>$sum:计算总合，$sum:1表示以一倍计数</li>
-<li>$avg:计算平均值</li>
-<li>$min:获取最小值</li>
-<li>$max:获取最大值</li>
-<li>$push:在结果文档中插入值到一个数组中</li>
-<li>$first:根据资源文档的排序获取第一个文档数据</li>
-<li>$last:根据资源文档的排序获取最后一个文档数据</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><ul>
-<li>创建索引<ul>
-<li>db.stu.ensureIndex({name:1})     1表示升序，-1表示降序</li>
-<li>创建唯一索引：db.stu.ensureindex({name:1},{“unique”:true})</li>
-<li>创建联合索引：db.stu.ensureindex({name:1,age:1})</li>
-</ul>
-</li>
-<li>删除索引<ul>
-<li>db.stu.dropIndex({name:1})</li>
-</ul>
-</li>
-<li>查看所有索引<ul>
-<li>db.stu.getIndexes()</li>
-</ul>
-</li>
-</ul>
-<h3 id="pymongo的使用"><a href="#pymongo的使用" class="headerlink" title="pymongo的使用"></a>pymongo的使用</h3><ul>
-<li>导入模块：from pymongo import MongoClient</li>
-<li>实例化：client=MongoClien(主机，端口)</li>
-<li>指定使用集合：collection=client[数据库][集合]</li>
-<li>插入数据：<ul>
-<li>插入一条：collection.insert(字典)</li>
-<li>插入多条：collection.insert_many(含有字典的列表)</li>
-</ul>
-</li>
-<li>查询记录<ul>
-<li>查询一个数据：collection.find_one(字段名及字段的字典)</li>
-<li>查询所有数据：collection.find(字段名及字段的字典)   ——  返回一个cursor类型的数据</li>
-</ul>
-</li>
-<li>更新数据<ul>
-<li>更新一条：collection.update_one(旧的字段,{$set:新的字段})</li>
-<li>更新多条：collection.update_many(旧的字段,{$set:新的字段})</li>
-</ul>
-</li>
-<li>删除数据<ul>
-<li>删除一条：collection.delete_one(字段名及字段的字典)</li>
-<li>删除多条：collection.delete_many(字段名及字段的字典)</li>
-</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">location /js/ &#123;</span><br><span class="line">            root  /data/;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        location /img/ &#123;</span><br><span class="line">            root  /data/;</span><br><span class="line">            autoindex on;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
 
@@ -535,7 +386,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/数据库/" rel="tag"># 数据库</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
             
           </div>
         
@@ -545,8 +396,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/08/17/记录一个关于django2.0与之前版本的区别/" rel="next" title="记录一个关于django2.0与django1.x的区别">
-                  <i class="fa fa-chevron-left"></i> 记录一个关于django2.0与django1.x的区别
+                <a href="/2019/08/24/关于错误Failed to load resource: the server responded with a status of 404 (Not Found)/" rel="next" title="关于错误Failed to load resource/ the server responded with a status of 404 (Not Found)">
+                  <i class="fa fa-chevron-left"></i> 关于错误Failed to load resource/ the server responded with a status of 404 (Not Found)
                 </a>
               
             </div>
@@ -554,10 +405,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/08/20/关于TypeError: context must be a dict rather than RequestContext错误/" rel="prev" title="关于TypeError/ context must be a dict rather than RequestContext错误.md">
-                  关于TypeError/ context must be a dict rather than RequestContext错误.md <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -702,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongodb的基本使用"><span class="nav-number">1.</span> <span class="nav-text">mongodb的基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引"><span class="nav-number">2.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pymongo的使用"><span class="nav-number">3.</span> <span class="nav-text">pymongo的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx安装"><span class="nav-number">1.</span> <span class="nav-text">Nginx安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置文件"><span class="nav-number">2.</span> <span class="nav-text">配置文件</span></a></li></ol></div>
             
 
           </div>

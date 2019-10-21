@@ -200,6 +200,100 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/10/nginx安装与配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="曹哲">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/avatar/logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Caoz's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/10/10/nginx安装与配置/" class="post-title-link" itemprop="url">nginx安装与配置</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-10 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-10T00:00:00+08:00">2019-10-10</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-21 15:04:11" itemprop="dateModified" datetime="2019-10-21T15:04:11+08:00">2019-10-21</time>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Nginx 是一个高性能的http和反向代理服务器,具有占用内存少,并发能力强的优秀的性能</li>
+<li>Nginx在开发中主要用作反向代理,负载均衡,动静分离</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/10/10/nginx安装与配置/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/24/关于错误Failed to load resource: the server responded with a status of 404 (Not Found)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1135,123 +1229,12 @@
   </article>
 
     
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/redis数据库的安装和配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="曹哲">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/avatar/logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Caoz's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/05/27/redis数据库的安装和配置/" class="post-title-link" itemprop="url">关于Redis数据库的安装和配置</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-27 23:18:24" itemprop="dateCreated datePublished" datetime="2019-05-27T23:18:24+08:00">2019-05-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-10 16:05:36" itemprop="dateModified" datetime="2019-10-10T16:05:36+08:00">2019-10-10</time>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>下载和安装</p>
-<ul>
-<li>打开terminal,依次使用以下命令下载,解压,安装</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-4.0.14.tar.gz</span><br><span class="line">$ tar -xzvf redis-4.0.14.tar.gz</span><br><span class="line">$ sudo mv ./redis-4.0.14 /usr/local/redis/</span><br><span class="line">$ cd /usr/local/redis/</span><br><span class="line">$ sudo make</span><br><span class="line">$ sudo make test</span><br><span class="line">$ sudo make install</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>到这里Redis就安装好了,安装的路径在/usr/local/bin/</p>
-</li>
-<li><p>把Redis的配置文件copy到/etc/redis/下,并修改相应配置</p>
-<ul>
-<li><code>sudo cp redis.conf /etc/redis/redis.conf</code></li>
-<li><code>vi /etc/redis/redis.conf</code><ul>
-<li>修改绑定的IP地址</li>
-<li>添加log日志的路径<code>logfile &quot;/var/log/redis/redis-server.log&quot;</code></li>
-<li>修改<code>daemonize no</code>为<code>daemonize yes</code>设置为守护进程</li>
-<li>其余的配置可以按需修改</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>将接下来就可以启动Redis的服务端了</p>
-<ul>
-<li><code>sudo redis-server /etc/redis/redis.conf</code></li>
-</ul>
-</li>
-<li><p>启动服务端</p>
-<ul>
-<li><code>redis-cli</code></li>
-</ul>
-</li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
           </div>
@@ -1286,7 +1269,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1326,7 +1309,9 @@
         
           
         
-        <span class="site-state-item-count">3</span>
+          
+        
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
